@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bốc Thăm Số</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        #number-image {
+            max-width: 200px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bốc Thăm Số</h1>
+    <img id="number-image" src="" alt="Number Image">
+    <p id="result">Kết quả: </p>
+    <button onclick="drawNumber()">Bốc thăm số</button>
+
+    <script>
+        // Mảng chứa các số từ 1 đến 10
+        var numbers = Array.from({ length: 10 }, (_, index) => index + 1);
+
+        // Mảng chứa đường dẫn hình ảnh tương ứng với từng số
+        var imagePaths = [
+            'images/1.png',
+            'images/2.png',
+            'images/3.png',
+            'images/4.png',
+            'images/5.png',
+            'images/6.png',
+            'images/7.png',
+            'images/8.png',
+            'images/9.png',
+            'images/10.png'
+        ];
+
+        // Hàm bốc thăm số
+        function drawNumber() {
+            if (numbers.length === 0) {
+                // Nếu đã hết số, tạo một vòng mới
+                numbers = Array.from({ length: 10 }, (_, index) => index + 1);
+            }
+
+            // Lấy một số ngẫu nhiên từ mảng
+            var randomIndex = Math.floor(Math.random() * numbers.length);
+            var drawnNumber = numbers.splice(randomIndex, 1)[0];
+
+            // Hiển thị kết quả và hình ảnh tương ứng
+            var resultElement = document.getElementById("result");
+            var imageElement = document.getElementById("number-image");
+
+            resultElement.textContent = "Kết quả: " + drawnNumber;
+            imageElement.src = imagePaths[drawnNumber - 1];
+        }
+    </script>
+</body>
+</html>
